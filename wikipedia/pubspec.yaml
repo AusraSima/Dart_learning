@@ -5,11 +5,12 @@ resolution: workspace
 # repository: https://github.com/my_org/my_repo
 
 environment:
-  sdk: ^3.12.2
+  sdk: '>=3.5.0 <4.0.0'
 
 # Add regular dependencies here.
 dependencies:
   path: ^1.9.0
+  http: ^1.3.0
 
 dev_dependencies:
   lints: ^6.0.0

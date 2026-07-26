@@ -317,7 +317,7 @@
       "name": "wikipedia",
       "rootUri": "../wikipedia",
       "packageUri": "lib/",
-      "languageVersion": "3.12"
+      "languageVersion": "3.5"
     }
   ],
   "generator": "pub",
