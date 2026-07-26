@@ -8,13 +8,15 @@ import 'exeptions.dart';
 import '../command_runner.dart';
 
 class CommandRunner {
-  CommandRunner({this.onError});
+  CommandRunner({this.onOutput, this.onError});
 
   final Map<String, Command> _commands = <String, Command>{};
 
   UnmodifiableSetView<Command> get commands =>
       UnmodifiableSetView(<Command>{..._commands.values});
 
+  Future<void> Function(String)? onOutput;
+  
   Future<void> Function(Object)? onError;
 
   Future<void> run(List<String> input) async {
@@ -23,7 +25,11 @@ class CommandRunner {
 
       if (results.command != null) {
         Object? output = await results.command!.run(results);
-        print(output.toString());
+        if (output != null) {
+          await onOutput!(output.toString());
+        } else {
+          print(output.toString());
+        }
       }
     } on Exception catch (exception) {
       if (onError != null) {
